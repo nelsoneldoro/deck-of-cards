@@ -1,0 +1,13 @@
+.root {
+  border-radius: 2px;
+  border: none;
+  height: 28px;
+  background-color: #00A865;
+  color: #fff;
+  padding: 0px 12px;
+  font-size: 10px;
+}
+
+.root:hover {
+  background-color: #4CAF50; /* Green */
+}
