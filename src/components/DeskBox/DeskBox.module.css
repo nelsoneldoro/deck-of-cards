@@ -1,0 +1,8 @@
+.root {
+  background-color: #17644D;
+  padding: 20px;
+  border-radius: 4px;
+  border: solid 1px #124536;
+  height: 100%;
+  flex: 1;
+}
