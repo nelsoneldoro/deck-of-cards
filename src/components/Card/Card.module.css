@@ -1,0 +1,35 @@
+.root {
+  width: 100px;
+  height: fit-content;
+  margin: 10px;
+  border-radius: 4px;
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hearts, .diamonds  {
+  color: #E12526;
+}
+
+.clubs, .spaces  {
+  color: #000;
+}
+
+.header {
+  align-self: flex-start;
+}
+
+.main-symbol {
+  font-size: 50px;
+  align-self: center;
+  margin: 10px
+}
+
+.footer {
+  transform: rotate(180deg);
+  align-self: flex-end;
+}
+
