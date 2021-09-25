@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Form from './pages/Form';
 import Deck from './pages/Deck';
-import Layout from './components/Layout/Layout';
+import Layout from './components/Layout';
 
 function App() {
   return (
