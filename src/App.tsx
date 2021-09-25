@@ -1,20 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import styles from './App.module.css'; // Import css modules stylesheet as styles
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import Form from './pages/Form';
+import Deck from './pages/Deck';
 
 function App() {
   return (
-    <div className={styles.app}>
-      <header>
-        <img src={logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={styles.app}>
+        <Switch>
+          <Route exact path="/deck/new">
+            <Form />
+          </Route>
+          <Route exact path="/deck/:id">
+            <Deck />
+          </Route>
+          <Redirect exact from="/" to={'/deck/new'} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
