@@ -1,0 +1,14 @@
+.root {
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  height: 28px;
+}
+
+.input {
+  border-radius: 2px 0px 0px 2px;
+}
+
+.button {
+  border-radius: 0px 2px 2px 0px;
+}
