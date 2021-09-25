@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './App.module.css'; // Import css modules stylesheet as styles
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Form from './pages/Form';
 import Deck from './pages/Deck';
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
     <Router>
-      <div className={styles.app}>
+      <Layout>
         <Switch>
           <Route exact path="/deck/new">
             <Form />
@@ -17,7 +17,7 @@ function App() {
           </Route>
           <Redirect exact from="/" to={'/deck/new'} />
         </Switch>
-      </div>
+      </Layout>
     </Router>
   );
 }
