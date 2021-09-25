@@ -4,5 +4,22 @@
 }
 
 .desk-box {
-  min-height: 400px;
+  min-height: 280px;
+  flex-direction: column;
 }
+
+.desk-box-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.footer {
+  margin-top: 30px;
+  align-self: flex-end;
+}
+
+.submit {
+  margin-left: 16px;
+}
+

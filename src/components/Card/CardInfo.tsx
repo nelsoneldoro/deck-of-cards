@@ -1,10 +1,11 @@
 import React from 'react';
+import {CardSuitSymbol, CardValue} from '../../models/Card';
 import styles from './CardInfo.module.css';
 
 export interface Props {
   className?: string;
-  symbol: '♥' | '♦' | '♣' | '♠';
-  value: 'A' | 'K' | 'Q' | 'J' | '10' | '9' | '8' | '7' | '6' | '5' | '4' | '3' | '2';
+  symbol: CardSuitSymbol;
+  value: CardValue;
 }
 
 const CardInfo = ({className, symbol, value}: Props) => {
