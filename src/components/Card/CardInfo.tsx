@@ -9,9 +9,11 @@ export interface Props {
 }
 
 const CardInfo = ({className, symbol, value}: Props) => {
+  const _value = React.useMemo(() => (value === '0' ? '10' : value), [value]);
+
   return (
     <div className={`${styles.root} ${className}`}>
-      <span className={styles.value}>{value}</span>
+      <span className={styles.value}>{_value}</span>
       <span className={styles.symbol}>{symbol}</span>
     </div>
   );
