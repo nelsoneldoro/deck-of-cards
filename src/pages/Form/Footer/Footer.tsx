@@ -12,10 +12,11 @@ interface Props {
   onSubmit: (rotationCode: CardCode) => void;
 }
 const Footer = ({loading, hasCardAdded, onSubmit}: Props) => {
-  const {text, error, validateAndGet, setText, handleSubmit} = useCardInput();
+  const {text, error, validateAndGet, setText} = useCardInput();
 
   const handleSubmitDeck = React.useCallback(() => {
     const rotationCard = validateAndGet();
+    debugger;
     if (rotationCard) {
       onSubmit(rotationCard);
     }
@@ -28,7 +29,7 @@ const Footer = ({loading, hasCardAdded, onSubmit}: Props) => {
   return (
     <div className={styles.root}>
       <FieldGroup title="Rotation card">
-        <CardTextInput error={error} value={text} onChange={setText} onSubmit={handleSubmit} />
+        <CardTextInput error={error} value={text} onChange={setText} />
         <SubmitButton
           disabled={error || !hasCardAdded || loading}
           className={styles.submit}

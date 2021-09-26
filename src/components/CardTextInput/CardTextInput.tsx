@@ -6,14 +6,14 @@ export interface CardTextInputProps {
   value: string;
   error?: boolean;
   onChange: (value: string) => void;
-  onSubmit: () => void;
+  onSubmit?: () => void;
 }
 
 const CardTextInput = ({value, error, onChange, onSubmit}: CardTextInputProps) => {
   const handleEnter = React.useCallback(
     (evt: React.KeyboardEvent) => {
       if (evt.key === 'Enter') {
-        onSubmit();
+        onSubmit?.();
       }
     },
     [onSubmit],
