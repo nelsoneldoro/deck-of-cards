@@ -41,16 +41,14 @@ export const suitToSymbol = (suitCode: CardCode['suitCode']) => {
   }
 };
 
-export const rotateOrder = <V>(arr: V[], firstValue: V) => {
+const rotateOrder = <V>(arr: V[], firstValue: V) => {
   const copy = [...arr];
   const valueIndex = copy.findIndex((n) => n === firstValue);
   copy.push(...copy.splice(0, valueIndex));
   return copy;
 };
 
-export const orderCards = (arr: CardCode[], rotationCard?: CardCode) => {
-  if (!rotationCard) return arr;
-
+export const sortCardsByRotation = (arr: CardCode[], rotationCard: CardCode) => {
   const {suitCode, value} = rotationCard;
 
   const suitCodesOrder = rotateOrder([...cartSuitsCodes], suitCode);
