@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import {listPile} from '../../services/deckApi';
 import {PileType} from '../../models/Pile';
 import {CardCode} from '../../models/Card';
-import {getCardCode} from '../../utils/card';
+import {getCardCode, orderCards} from '../../utils/card';
 import RotationCard from './RotationCard';
 import CardList from '../../components/CardList';
 import Footer from './Footer';
@@ -31,10 +31,14 @@ const Deck = () => {
     });
   }, [id]);
 
+  const orderedCards = React.useMemo(() => {
+    return order === 'rotation' ? orderCards(cards, rotationCard) : cards;
+  }, [order, rotationCard, cards]);
+
   return (
     <Page>
       <DeskBox>
-        <CardList cards={cards} />
+        <CardList cards={orderedCards} />
         {rotationCard && (
           <RotationCard suitCode={rotationCard.suitCode} value={rotationCard.value} />
         )}
