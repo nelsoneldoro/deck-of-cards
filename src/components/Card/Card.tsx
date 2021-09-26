@@ -27,7 +27,7 @@ const Card = ({suitCode, value}: CarProps) => {
   }, [suitCode]);
 
   return (
-    <div className={`${styles.root} ${suitClass}`}>
+    <div data-testid="card" title={`${value}${suitCode}`} className={`${styles.root} ${suitClass}`}>
       <CardInfo value={value} symbol={symbol} className={styles.header} />
       <span className={styles['main-symbol']}>{symbol}</span>
       <CardInfo value={value} symbol={symbol} className={styles.footer} />

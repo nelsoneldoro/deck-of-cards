@@ -21,7 +21,7 @@ const CardTextInput = ({value, error, onChange, onSubmit}: CardTextInputProps) =
 
   const handleChange = React.useCallback(
     (evt: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(evt.target.value.toUpperCase());
+      onChange(evt.target.value.toUpperCase().substr(0, 2));
     },
     [onChange],
   );
