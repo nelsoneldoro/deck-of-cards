@@ -7,7 +7,7 @@ export const cardValues = [
   'K',
   'Q',
   'J',
-  '10',
+  '0',
   '9',
   '8',
   '7',

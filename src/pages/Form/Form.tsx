@@ -4,7 +4,7 @@ import DeskBox from '../../components/DeskBox';
 import FieldGroup from '../../components/FieldGroup';
 import SubmitTextInput from '../../components/SubmitCardInput';
 import {CardCode} from '../../models/Card';
-import {createDeck} from '../../services/deckApi';
+import {create, draw} from '../../services/deckApi';
 import styles from './Form.module.css';
 import {useHistory} from 'react-router-dom';
 import {Routes} from '../../App';
@@ -17,9 +17,11 @@ const Form = () => {
 
   const handleSubmitDeck = (rotationCard: CardCode) => {
     setLoading(true);
-    createDeck(cards)
+    create(cards)
       .then((r) => {
-        history.push(Routes.deck.replace(':id', `${r.deck_id}-${rotationCard.code}`));
+        draw(r.deck_id, cards.length).then((r) => {
+          history.push(Routes.deck.replace(':id', `${r.deck_id}-${rotationCard.code}`));
+        });
       })
       .catch(() => alert('Unable to save deck'))
       .finally(() => setLoading(false));
