@@ -16,19 +16,24 @@ const Deck = () => {
   const [order, setOrder] = React.useState<'input' | 'rotation'>('input');
 
   React.useEffect(() => {
+    let isCancelled = false;
     const [mainDeck, rotationDeck] = id.split('-');
     listPile(mainDeck, PileType.hand).then((r) => {
       const _cards = r?.piles?.[PileType.hand]?.cards || [];
       const cardCodes = _cards.map((_c) => getCardCode(_c.code));
-      setCards(cardCodes);
+      if (!isCancelled) setCards(cardCodes);
     });
     listPile(rotationDeck, PileType.rotation).then((r) => {
       const code = r?.piles?.[PileType.rotation]?.cards?.[0]?.code;
       if (code) {
         const cardCode = getCardCode(code);
-        setRotationCard(cardCode);
+        if (!isCancelled) setRotationCard(cardCode);
       }
     });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [id]);
 
   const orderedCards = React.useMemo(() => {

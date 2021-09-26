@@ -29,7 +29,7 @@ const Footer = ({loading, hasCardAdded, onSubmit}: Props) => {
   return (
     <PageFooter>
       <FieldGroup title="Rotation card">
-        <CardTextInput error={error} value={text} onChange={setText} />
+        <CardTextInput error={error} value={text} onChange={setText} onSubmit={handleSubmitDeck} />
         <SubmitButton
           disabled={error || !hasCardAdded || loading}
           className={styles.submit}
