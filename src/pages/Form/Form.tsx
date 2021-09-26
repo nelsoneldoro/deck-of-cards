@@ -6,19 +6,30 @@ import FieldGroup from '../../components/FieldGroup';
 import SubmitButton from '../../components/SubmitButton';
 import SubmitTextInput from '../../components/SubmitCardInput';
 import {CardCode} from '../../models/Card';
+import {createDeck} from '../../services/deckApi';
 import styles from './Form.module.css';
+import {useHistory} from 'react-router-dom';
+import {Routes} from '../../App';
 
 const Form = () => {
+  const history = useHistory();
   const [cards, setCards] = React.useState<CardCode[]>([]);
 
-  const handleAddRotationCard = (cardCode: CardCode) => {
-    console.log('rotation', cardCode);
-  };
-  const {text, error, validate, setText, handleSubmit} = useCardInput(handleAddRotationCard);
+  const {
+    text,
+    error,
+    validateAndGet: validateAndGetRotation,
+    setText,
+    handleSubmit,
+  } = useCardInput();
 
   const handleSubmitDeck = () => {
-    validate();
-    console.log('submit deck');
+    const rotationCard = validateAndGetRotation();
+    if (rotationCard) {
+      createDeck(cards).then((r) => {
+        history.push(Routes.deck.replace(':id', `${r.deck_id}-${rotationCard.code}`));
+      });
+    }
   };
 
   const handleAdd = (cardCode: CardCode) => {
@@ -30,7 +41,7 @@ const Form = () => {
       <DeskBox className={styles['desk-box']}>
         <div className={styles['desk-box-content']}>
           {cards.map((card) => (
-            <Card key={`${card.value}${card.suitCode}`} suit={card.suitCode} value={card.value} />
+            <Card key={card.code} suit={card.suitCode} value={card.value} />
           ))}
         </div>
         <FieldGroup title="Add cards to the pile">
