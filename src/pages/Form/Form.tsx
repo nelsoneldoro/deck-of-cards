@@ -3,22 +3,13 @@ import DeskBox from '../../components/DeskBox';
 import FieldGroup from '../../components/FieldGroup';
 import SubmitTextInput from '../../components/SubmitCardInput';
 import {CardCode} from '../../models/Card';
-import {addToPile, create as createDeck, drawAll as drawAllDeck} from '../../services/deckApi';
 import styles from './Form.module.css';
 import {useHistory} from 'react-router-dom';
 import {Routes} from '../../App';
 import Footer from './Footer';
-import {PileType} from '../../models/Pile';
 import CardList from '../../components/CardList';
 import Page from '../../components/Page';
-
-const savePile = async (pile: PileType, codes: CardCode['code'][]) => {
-  const {deck_id} = await createDeck(codes);
-  await drawAllDeck(deck_id);
-  await addToPile(deck_id, pile, codes);
-
-  return deck_id;
-};
+import {save} from './Footer/utils';
 
 const useForm = () => {
   const history = useHistory();
@@ -26,19 +17,18 @@ const useForm = () => {
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmitDeck = React.useCallback(
-    (rotationCard: CardCode) => {
+    async (rotationCard: CardCode) => {
       const codes = cards.map((c) => c.code);
 
-      setLoading(true);
-      Promise.all([
-        savePile(PileType.hand, codes),
-        savePile(PileType.rotation, [rotationCard.code]),
-      ])
-        .then((r) => {
-          const [mainDeckId, rotationDeckId] = r;
-          history.push(Routes.deck.replace(':id', `${mainDeckId}-${rotationDeckId}`));
-        })
-        .finally(() => setLoading(false));
+      try {
+        setLoading(true);
+        const {mainDeckId, rotationDeckId} = await save(codes, rotationCard.code);
+        history.push(Routes.deck.replace(':id', `${mainDeckId}-${rotationDeckId}`));
+      } catch {
+        alert('Unable to submit cards');
+      } finally {
+        setLoading(false);
+      }
     },
     [cards, history],
   );
