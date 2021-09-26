@@ -11,3 +11,7 @@
 .root:hover {
   background-color: #4CAF50; /* Green */
 }
+
+.root:disabled {
+  opacity: 0.5;
+}
