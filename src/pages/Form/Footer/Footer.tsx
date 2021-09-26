@@ -1,6 +1,7 @@
 import React from 'react';
 import CardTextInput, {useCardInput} from '../../../components/CardTextInput';
 import FieldGroup from '../../../components/FieldGroup';
+import PageFooter from '../../../components/PageFooter';
 import SubmitButton from '../../../components/SubmitButton';
 import {CardCode} from '../../../models/Card';
 
@@ -26,7 +27,7 @@ const Footer = ({loading, hasCardAdded, onSubmit}: Props) => {
   }, [loading]);
 
   return (
-    <div className={styles.root}>
+    <PageFooter>
       <FieldGroup title="Rotation card">
         <CardTextInput error={error} value={text} onChange={setText} />
         <SubmitButton
@@ -37,7 +38,7 @@ const Footer = ({loading, hasCardAdded, onSubmit}: Props) => {
           {buttonLabel}
         </SubmitButton>
       </FieldGroup>
-    </div>
+    </PageFooter>
   );
 };
 

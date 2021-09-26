@@ -1,9 +1,18 @@
 import React from 'react';
 import styles from './Button.module.css';
+import classNames from 'classnames';
 
-const Button = (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
-  const {className, ...otherProps} = props;
-  return <button className={`${styles.root} ${className}`} {...otherProps} />;
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  active?: boolean;
+}
+const Button = (props: Props) => {
+  const {className, active, ...otherProps} = props;
+  return (
+    <button
+      className={classNames(styles.root, {[styles.active]: active}, className)}
+      {...otherProps}
+    />
+  );
 };
 
 export default Button;

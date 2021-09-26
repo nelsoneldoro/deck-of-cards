@@ -7,10 +7,13 @@ import {CardCode} from '../../models/Card';
 import {getCardCode} from '../../utils/card';
 import RotationCard from './RotationCard';
 import CardList from '../../components/CardList';
+import Footer from './Footer';
+import Page from '../../components/Page';
 const Deck = () => {
   let {id} = useParams<{id: string}>();
   const [rotationCard, setRotationCard] = React.useState<CardCode>();
   const [cards, setCards] = React.useState<CardCode[]>([]);
+  const [order, setOrder] = React.useState<'input' | 'rotation'>('input');
 
   React.useEffect(() => {
     const [mainDeck, rotationDeck] = id.split('-');
@@ -29,14 +32,15 @@ const Deck = () => {
   }, [id]);
 
   return (
-    <div>
+    <Page>
       <DeskBox>
         <CardList cards={cards} />
         {rotationCard && (
           <RotationCard suitCode={rotationCard.suitCode} value={rotationCard.value} />
         )}
       </DeskBox>
-    </div>
+      <Footer order={order} onSetOrder={setOrder} />
+    </Page>
   );
 };
 

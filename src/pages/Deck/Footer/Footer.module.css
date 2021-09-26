@@ -1,0 +1,18 @@
+.root {
+  align-self: center;
+}
+
+.title {
+  margin: 0 0 8px 0;
+}
+
+.button {
+  width: 130px
+}
+
+.inputOrder {
+  border-radius: 2px 0px 0px 2px;
+}
+.rotationOrder {
+  border-radius: 0px 2px 2px 0px;
+}

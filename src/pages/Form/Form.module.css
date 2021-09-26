@@ -1,8 +1,3 @@
-.root {
-  display: flex;
-  flex-direction: column;
-}
-
 .desk-box {
   min-height: 280px;
   flex-direction: column;

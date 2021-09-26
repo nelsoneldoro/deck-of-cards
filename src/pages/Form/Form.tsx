@@ -10,6 +10,7 @@ import {Routes} from '../../App';
 import Footer from './Footer';
 import {PileType} from '../../models/Pile';
 import CardList from '../../components/CardList';
+import Page from '../../components/Page';
 
 const savePile = async (pile: PileType, codes: CardCode['code'][]) => {
   const {deck_id} = await createDeck(codes);
@@ -56,7 +57,7 @@ const Form = () => {
   const {loading, cards, handleSubmitDeck, handleAdd} = useForm();
 
   return (
-    <div className={styles.root}>
+    <Page>
       <DeskBox className={styles['desk-box']}>
         <CardList cards={cards} />
         <FieldGroup title="Add cards to the pile">
@@ -64,7 +65,7 @@ const Form = () => {
         </FieldGroup>
       </DeskBox>
       <Footer loading={loading} hasCardAdded={!!cards.length} onSubmit={handleSubmitDeck} />
-    </div>
+    </Page>
   );
 };
 
