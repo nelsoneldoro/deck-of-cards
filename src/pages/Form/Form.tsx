@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '../../components/Card';
 import DeskBox from '../../components/DeskBox';
 import FieldGroup from '../../components/FieldGroup';
 import SubmitTextInput from '../../components/SubmitCardInput';
@@ -10,6 +9,7 @@ import {useHistory} from 'react-router-dom';
 import {Routes} from '../../App';
 import Footer from './Footer';
 import {PileType} from '../../models/Pile';
+import CardList from '../../components/CardList';
 
 const savePile = async (pile: PileType, codes: CardCode['code'][]) => {
   const {deck_id} = await createDeck(codes);
@@ -29,7 +29,10 @@ const useForm = () => {
       const codes = cards.map((c) => c.code);
 
       setLoading(true);
-      Promise.all([savePile(PileType.hand, codes), savePile(PileType.hand, [rotationCard.code])])
+      Promise.all([
+        savePile(PileType.hand, codes),
+        savePile(PileType.rotation, [rotationCard.code]),
+      ])
         .then((r) => {
           const [mainDeckId, rotationDeckId] = r;
           history.push(Routes.deck.replace(':id', `${mainDeckId}-${rotationDeckId}`));
@@ -41,7 +44,8 @@ const useForm = () => {
 
   const handleAdd = React.useCallback(
     (cardCode: CardCode) => {
-      if (cards.every((c) => c.code !== cardCode.code)) setCards([...cards, cardCode]);
+      if (cards.length <= 10 && cards.every((c) => c.code !== cardCode.code))
+        setCards([...cards, cardCode]);
     },
     [cards],
   );
@@ -54,11 +58,7 @@ const Form = () => {
   return (
     <div className={styles.root}>
       <DeskBox className={styles['desk-box']}>
-        <div className={styles['desk-box-content']}>
-          {cards.map((card) => (
-            <Card key={card.code} suit={card.suitCode} value={card.value} />
-          ))}
-        </div>
+        <CardList cards={cards} />
         <FieldGroup title="Add cards to the pile">
           <SubmitTextInput buttonLabel="Add" onSubmit={handleAdd} />
         </FieldGroup>

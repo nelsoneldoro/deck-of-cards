@@ -7,10 +7,3 @@
   min-height: 280px;
   flex-direction: column;
 }
-
-.desk-box-content {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-}
-

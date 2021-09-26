@@ -1,27 +1,15 @@
 import React from 'react';
+import {suitToSymbol} from '../../utils/card';
 import styles from './Card.module.css';
 import CardInfo, {Props as CardInfoProps} from './CardInfo';
 
-interface Props {
-  suit: 'H' | 'D' | 'C' | 'S';
+export interface CarProps {
+  suitCode: 'H' | 'D' | 'C' | 'S';
   value: CardInfoProps['value'];
 }
 
-const suitToSymbol = (suit: Props['suit']) => {
-  switch (suit) {
-    case 'H':
-      return '♥' as const;
-    case 'D':
-      return '♦' as const;
-    case 'C':
-      return '♣' as const;
-    case 'S':
-      return '♠' as const;
-  }
-};
-
-const suitToStyleClass = (suit: Props['suit']) => {
-  switch (suit) {
+const suitToStyleClass = (suitCode: CarProps['suitCode']) => {
+  switch (suitCode) {
     case 'H':
       return styles.hearts;
     case 'D':
@@ -33,10 +21,10 @@ const suitToStyleClass = (suit: Props['suit']) => {
   }
 };
 
-const Card = ({suit, value}: Props) => {
+const Card = ({suitCode, value}: CarProps) => {
   const [symbol, suitClass] = React.useMemo(() => {
-    return [suitToSymbol(suit), suitToStyleClass(suit)];
-  }, [suit]);
+    return [suitToSymbol(suitCode), suitToStyleClass(suitCode)];
+  }, [suitCode]);
 
   return (
     <div className={`${styles.root} ${suitClass}`}>

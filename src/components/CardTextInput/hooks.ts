@@ -1,6 +1,6 @@
 import React from 'react';
 import {CardCode} from '../../models/Card';
-import {cardValues, cartSuitsCodes, getCardCode} from '../../utils/card';
+import {cardValues, cartSuitsCodes, getCode} from '../../utils/card';
 
 export const useCardInput = (onSubmit?: (cardCode: CardCode) => void) => {
   const [text, setText] = React.useState('');
@@ -20,7 +20,7 @@ export const useCardInput = (onSubmit?: (cardCode: CardCode) => void) => {
         const chars = text.split('');
         const value = chars[0] as CardCode['value'];
         const suitCode = chars[1] as CardCode['suitCode'];
-        const code = getCardCode(value, suitCode);
+        const code = getCode(value, suitCode);
 
         return {code, value, suitCode};
       }

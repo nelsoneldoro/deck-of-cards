@@ -16,7 +16,6 @@ const Footer = ({loading, hasCardAdded, onSubmit}: Props) => {
 
   const handleSubmitDeck = React.useCallback(() => {
     const rotationCard = validateAndGet();
-    debugger;
     if (rotationCard) {
       onSubmit(rotationCard);
     }
