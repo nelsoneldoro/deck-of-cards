@@ -9,7 +9,7 @@ const FieldGroup: React.FC<Props> = ({className, title, children}) => {
   return (
     <div className={`${styles.root} ${className}`}>
       <h5 className={styles.title}>{title}</h5>
-      {children}
+      <div>{children}</div>
     </div>
   );
 };

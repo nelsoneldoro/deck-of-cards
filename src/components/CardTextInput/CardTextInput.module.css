@@ -1,0 +1,14 @@
+.root {
+  display: inline-block;
+  width: 160px;
+  position: relative;
+}
+
+
+.error {
+  color: red;
+  font-size: 10px;
+  position: absolute;
+  bottom: -16px;
+  left: 0px;
+}
