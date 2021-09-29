@@ -3,10 +3,12 @@
   display: flex;
   justify-content: center;
   height: 28px;
+  width: 160px;
 }
 
 .input {
   border-radius: 2px 0px 0px 2px;
+  width: 100%;
 }
 
 .button {

@@ -14,7 +14,13 @@ const SubmitCardInput = ({buttonLabel, onSubmit}: Props) => {
 
   return (
     <div className={styles.root}>
-      <CardTextInput error={error} value={text} onChange={setText} onSubmit={handleSubmit} />
+      <CardTextInput
+        className={styles.input}
+        error={error}
+        value={text}
+        onChange={setText}
+        onSubmit={handleSubmit}
+      />
       <Button className={styles.button} onClick={handleSubmit}>
         {buttonLabel}
       </Button>

@@ -4,12 +4,13 @@ import styles from './CardTextInput.module.css';
 
 export interface CardTextInputProps {
   value: string;
+  className?: string;
   error?: boolean;
   onChange: (value: string) => void;
   onSubmit?: () => void;
 }
 
-const CardTextInput = ({value, error, onChange, onSubmit}: CardTextInputProps) => {
+const CardTextInput = ({value, className, error, onChange, onSubmit}: CardTextInputProps) => {
   const handleEnter = React.useCallback(
     (evt: React.KeyboardEvent) => {
       if (evt.key === 'Enter') {
@@ -29,6 +30,7 @@ const CardTextInput = ({value, error, onChange, onSubmit}: CardTextInputProps) =
   return (
     <div className={styles.root}>
       <TextInput
+        className={className}
         value={value}
         placeholder="Card name"
         maxLength={2}
