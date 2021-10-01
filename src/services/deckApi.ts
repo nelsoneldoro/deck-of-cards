@@ -42,7 +42,7 @@ export function addToPile(deckId: string, pile: string, codes: CardCode['code'][
 }
 
 type ListPile = {
-  piles: Record<PileType, {cards: Card[]}>;
+  piles: Partial<Record<PileType, {cards: Card[]}>>;
 };
 
 export function listPile(deckId: string, pile: string) {
