@@ -1,5 +1,6 @@
-import {getCardCode, sortCardsByRotation} from './card';
+import {sortCardsByRotation} from './card';
 import each from 'jest-each';
+import {Card} from '../models/Card';
 
 each([
   [['AS', '2S', '3S', 'KS'], '2S', ['2S', 'AS', 'KS', '3S']],
@@ -8,8 +9,8 @@ each([
   [['2C', 'AC', 'QC', '0C', '8C', '6C', '4C'], '6S', ['6C', '4C', '2C', 'AC', 'QC', '0C', '8C']],
   [['7D', '4C', 'AS', 'JC', 'AH'], '6S', ['AS', 'AH', '7D', '4C', 'JC']],
 ]).test('test sort by rotation', (codes, rotationCode, expected) => {
-  const cards = codes.map(getCardCode);
-  const rotationCard = getCardCode(rotationCode);
+  const cards = codes.map(Card.create);
+  const rotationCard = Card.create(rotationCode);
 
   const sorted = sortCardsByRotation(cards, rotationCard);
 

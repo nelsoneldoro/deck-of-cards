@@ -2,7 +2,7 @@ import React from 'react';
 import DeskBox from '../../components/DeskBox';
 import FieldGroup from '../../components/FieldGroup';
 import SubmitTextInput from '../../components/SubmitCardInput';
-import {CardCode} from '../../models/Card';
+import {Card} from '../../models/Card';
 import styles from './Form.module.css';
 import {useHistory} from 'react-router-dom';
 import {Routes} from '../../App';
@@ -13,11 +13,11 @@ import {save} from './Footer/utils';
 
 const useForm = () => {
   const history = useHistory();
-  const [cards, setCards] = React.useState<CardCode[]>([]);
+  const [cards, setCards] = React.useState<Card[]>([]);
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmitDeck = React.useCallback(
-    async (rotationCard: CardCode) => {
+    async (rotationCard: Card) => {
       const codes = cards.map((c) => c.code);
 
       try {
@@ -34,7 +34,7 @@ const useForm = () => {
   );
 
   const handleAdd = React.useCallback(
-    (cardCode: CardCode) => {
+    (cardCode: Card) => {
       if (cards.length <= 10 && cards.every((c) => c.code !== cardCode.code))
         setCards([...cards, cardCode]);
     },

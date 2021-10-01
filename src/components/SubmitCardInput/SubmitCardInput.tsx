@@ -1,12 +1,12 @@
 import React from 'react';
-import {CardCode} from '../../models/Card';
+import {Card} from '../../models/Card';
 import Button from '../Button';
 import CardTextInput, {useCardInput} from '../CardTextInput';
 import styles from './SubmitCardInput.module.css';
 
 interface Props {
   buttonLabel: string;
-  onSubmit: (cardCode: CardCode) => void;
+  onSubmit: (cardCode: Card) => void;
 }
 
 const SubmitCardInput = ({buttonLabel, onSubmit}: Props) => {

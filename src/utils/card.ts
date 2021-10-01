@@ -1,4 +1,4 @@
-import {CardCode} from '../models/Card';
+import {Card} from '../models/Card';
 
 export const cardSymbols = ['♥', '♦', '♣', '♠'] as const;
 export const cartSuitsCodes = ['H', 'D', 'C', 'S'] as const;
@@ -18,17 +18,7 @@ export const cardValues = [
   '3',
 ] as const;
 
-export const getCode = (value: CardCode['value'], suitCode: CardCode['suitCode']) =>
-  `${value}${suitCode}` as const;
-
-export const getCardCode = (code: CardCode['code']) => {
-  const chars = code.split('');
-  const value = chars[0] as CardCode['value'];
-  const suitCode = chars[1] as CardCode['suitCode'];
-  return {code, suitCode, value} as CardCode;
-};
-
-export const suitToSymbol = (suitCode: CardCode['suitCode']) => {
+export const suitToSymbol = (suitCode: Card['suitCode']) => {
   switch (suitCode) {
     case 'H':
       return '♥' as const;
@@ -48,7 +38,7 @@ const rotateOrder = <V>(arr: V[], firstValue: V) => {
   return copy;
 };
 
-export const sortCardsByRotation = (arr: CardCode[], rotationCard: CardCode) => {
+export const sortCardsByRotation = (arr: Card[], rotationCard: Card) => {
   const {suitCode, value} = rotationCard;
 
   const suitCodesOrder = rotateOrder([...cartSuitsCodes], suitCode);
@@ -56,7 +46,7 @@ export const sortCardsByRotation = (arr: CardCode[], rotationCard: CardCode) => 
   const orderRef = suitCodesOrder.reduce((acc, suitCode) => {
     const suitValues = valuesOrder.map((value) => `${value}${suitCode}` as const);
     return [...acc, ...suitValues];
-  }, [] as CardCode['code'][]);
+  }, [] as Card['code'][]);
 
   return [...arr].sort(({code: codeA}, {code: codeB}) => {
     return orderRef.indexOf(codeA) - orderRef.indexOf(codeB);

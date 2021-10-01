@@ -3,14 +3,14 @@ import CardTextInput, {useCardInput} from '../../../components/CardTextInput';
 import FieldGroup from '../../../components/FieldGroup';
 import PageFooter from '../../../components/PageFooter';
 import SubmitButton from '../../../components/SubmitButton';
-import {CardCode} from '../../../models/Card';
+import {Card} from '../../../models/Card';
 
 import styles from './Footer.module.css';
 
 interface Props {
   loading: boolean;
   hasCardAdded: boolean;
-  onSubmit: (rotationCode: CardCode) => void;
+  onSubmit: (rotationCard: Card) => void;
 }
 const Footer = ({loading, hasCardAdded, onSubmit}: Props) => {
   const {text, error, validateAndGet, setText} = useCardInput();

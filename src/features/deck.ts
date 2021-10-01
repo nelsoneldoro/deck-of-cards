@@ -1,13 +1,12 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../app/store';
-import {CardCode} from '../models/Card';
+import {Card} from '../models/Card';
 import {PileType} from '../models/Pile';
 import {listPile} from '../services/deckApi';
-import {getCardCode} from '../utils/card';
 
 export interface DeckState {
-  cards: CardCode[];
-  rotationCard: CardCode | undefined;
+  cards: Card[];
+  rotationCard: Card | undefined;
   order: 'input' | 'rotation';
 }
 
@@ -68,13 +67,13 @@ export const fetch =
 
     listPile(mainDeck, PileType.hand).then((r) => {
       const _cards = r?.piles?.[PileType.hand]?.cards || [];
-      const cardCodes = _cards.map((_c) => getCardCode(_c.code));
+      const cardCodes = _cards.map((_c) => Card.create(_c.code));
       dispatch(setCards(cardCodes));
     });
     listPile(rotationDeck, PileType.rotation).then((r) => {
       const code = r?.piles?.[PileType.rotation]?.cards?.[0]?.code;
       if (code) {
-        const cardCode = getCardCode(code);
+        const cardCode = Card.create(code);
         dispatch(setRotationCard(cardCode));
       }
     });

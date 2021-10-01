@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from '../../components/Card';
-import {CardCode} from '../../models/Card';
+import {Card as CardModel} from '../../models/Card';
 import styles from './CardList.module.css';
 
 interface Props {
-  cards: CardCode[];
+  cards: CardModel[];
 }
 const CardList = ({cards}: Props) => {
   return (
